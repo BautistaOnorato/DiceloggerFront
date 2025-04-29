@@ -106,6 +106,8 @@ const CreateCharacter = ({
     });
   }
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const [selectedName, setSelectedName] = useState(
     characterTemplate ? characterTemplate.name : ""
   );
@@ -362,6 +364,7 @@ const CreateCharacter = ({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
     if (s3Image) {
       const characterImage = await uploadFileToS3(s3Image);
       if (characterImage) {
@@ -448,6 +451,7 @@ const CreateCharacter = ({
       // router.push('/characters')
       createCharacter(characterData);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -729,7 +733,7 @@ const CreateCharacter = ({
           />
         </FormGroup>
       </FormCard>
-      <Button type="submit">Crear personaje</Button>
+      <Button type="submit" disabled={isLoading}>{isLoading ? "Cargando..." : "Crear personaje"}</Button>
     </NewLayout>
   );
 };

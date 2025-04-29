@@ -26,6 +26,7 @@ import { useRouter } from "next/navigation";
 import { uploadFileToS3 } from "@/services/s3Upload";
 import { Character } from "../Character";
 import { editCharacter } from "../actions";
+import { revalidatePath } from "next/cache";
 
 export type Race = {
   race_id: number;
@@ -325,7 +326,6 @@ const UpdateCharacter = ({
         // router.push('/characters')
         try {
           await editCharacter(characterBack.characterid, characterData);
-          router.push("/characters");
         } catch (error) {
           console.log(error);
         }
@@ -373,9 +373,10 @@ const UpdateCharacter = ({
       // router.push('/characters')
       try {
         await editCharacter(characterBack.characterid, characterData);
-        router.push("/characters");
       } catch (error) {
         console.log(error);
+      } finally {
+        router.push("/character/" + characterBack.characterid);
       }
     }
   };

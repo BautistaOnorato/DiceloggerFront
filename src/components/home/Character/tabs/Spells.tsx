@@ -269,11 +269,11 @@ const Spells = ({
 
   const aptitudMagica: string =
     spellCastingAbility[
-      characterClass.spellcasting_ability as keyof spellCastingAbilityType
+      characterClass.spellcasting_ability.toLowerCase() as keyof spellCastingAbilityType
     ];
 
   const modifier: number = Math.floor(
-    (stat[characterClass.spellcasting_ability as keyof statType] - 10) / 2
+    (stat[characterClass.spellcasting_ability.toLowerCase() as keyof statType] - 10) / 2
   );
   const tiradaDeSalvacion = 8 + characterClass.proficiency_bonus + modifier;
   const bonusDeAtaque = modifier + characterClass.proficiency_bonus;
@@ -285,7 +285,7 @@ const Spells = ({
           <span>Aptitud mágica</span>
           <h4>{aptitudMagica}</h4>
         </div>
-        <div>
+        <div onClick={() => console.log(spellCastingAbility)}>
           <span>Tirada de salvación</span>
           <h4>{tiradaDeSalvacion}</h4>
         </div>

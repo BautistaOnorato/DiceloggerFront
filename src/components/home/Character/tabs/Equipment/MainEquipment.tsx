@@ -1,7 +1,7 @@
 "use client";
 
 import Breastplate from "@/components/icons/Breastplate";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import styles from "./MainEquipment.module.css";
 import ExpandMenu from "../components/ExpandMenu/ExpandMenu";
 import SwapBag from "@/components/icons/SwapBag";
@@ -17,21 +17,6 @@ type MainEquipmentProps = {
   handleItems: (value: any | any[]) => void;
 };
 
-const getWeight = (equipment: EquipmentProps) => {
-  const weaponsWeight = equipment.weapons.reduce(
-    (accumulator, currentValue) => accumulator + currentValue.weapon.weight,
-    0
-  );
-  const armorsWeight = equipment.armors.reduce(
-    (accumulator, currentValue) => accumulator + currentValue.armor.weight,
-    0
-  );
-  const itemsWeight = equipment.items.reduce(
-    (accumulator, currentValue) => accumulator + currentValue.item.weight,
-    0
-  );
-  return weaponsWeight + armorsWeight + itemsWeight;
-};
 
 const MainEquipment = ({
   equipment,
@@ -40,7 +25,23 @@ const MainEquipment = ({
   handleArmors,
   handleItems
 }: MainEquipmentProps) => {
-  const weight = getWeight(equipment);
+  const getWeight = () => {
+    if (!equipment) return 0;
+    
+    const weaponsWeight = equipment.weapons.reduce(
+      (accumulator, currentValue) => accumulator + currentValue.weapon.weight,
+      0
+    );
+    const armorsWeight = equipment.armors.reduce(
+      (accumulator, currentValue) => accumulator + currentValue.armor.weight,
+      0
+    );
+    const itemsWeight = equipment.items.reduce(
+      (accumulator, currentValue) => accumulator + currentValue.item.weight,
+      0
+    );
+    return weaponsWeight + armorsWeight + itemsWeight;
+  };
 
   const deleteWeapon = async (characterWeaponId: number) => {
     const response = await fetch(
@@ -91,10 +92,10 @@ const MainEquipment = ({
         <strong onClick={() => console.log(equipment)}>Peso: </strong>
         <span
           style={{
-            color: weight > equipment.maxWeight ? "#e61720" : "inherit",
+            color: getWeight() > equipment.maxWeight ? "#e61720" : "inherit",
           }}
         >
-          {weight}kg / {equipment.maxWeight}kg
+          {getWeight()}kg / {equipment.maxWeight}kg
         </span>
       </div>
       <div className={styles.detailColumns}>
@@ -113,7 +114,7 @@ const MainEquipment = ({
               <ExpandMenu
                 key={weapon.character_weapon_id}
                 onDelete={() => {
-                  deleteWeapon(weapon.character_weapon_id);
+                  deleteWeapon(weapon.weapon.weapon_id);
                 }}
                 onEdit={() => {
                   handleDisplay("weapon", weapon.weapon.weapon_id);

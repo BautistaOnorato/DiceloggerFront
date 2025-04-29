@@ -8,7 +8,7 @@ export async function DELETE(req: Request, { params } : { params: { id: string }
       throw new Error("ID is missing");
     }
 
-    const res = await fetch(`${process.env.BACKEND_URL}/weapon_character/${params.id}`, {
+    const res = await fetch(`${process.env.BACKEND_URL}/weapon/${params.id}`, {
       method: "DELETE",
     });
 

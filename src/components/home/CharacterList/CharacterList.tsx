@@ -18,8 +18,6 @@ const CharacterList = ({ characters }: CharacterListProps) => {
     return character.name.toLowerCase().includes(search.toLowerCase())
   }
 
-  console.log(characters)
-
   return (
     <List search={search} 
     setSearch={setSearch} 

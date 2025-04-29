@@ -95,7 +95,10 @@ const Equipment = ({
     }
   }
 
-  return <section className={styles.equipment}>{displayFunction()}</section>;
+  return <section className={styles.equipment}>
+    <p onClick={() => console.log(weapons)}>Equipamiento</p>
+    {displayFunction()}
+    </section>;
 };
 
 export default Equipment;

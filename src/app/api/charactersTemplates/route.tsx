@@ -11,7 +11,7 @@ export async function GET(req: Request, res: NextApiResponse) {
     {
       character_id: 1,
       race_id: 2,
-      class_id: 17,
+      class_id: 7,
       background_id: 2,
       name: "Astarion",
       story: "Asatrion era un elfo nacido en el seno de una familia noble de la antigua ciudad élfica de Elenath. Sin embargo, su vida dio un giro inesperado cuando su familia fue acusada injustamente de traición por un rival político ambicioso. En un intento desesperado por probar la inocencia de su familia, Asatrion se embarcó en una vida como pícaro, utilizando sus habilidades naturales y su astucia para infiltrarse en los círculos más oscuros de la sociedad y obtener información crucial.",
@@ -47,7 +47,7 @@ export async function GET(req: Request, res: NextApiResponse) {
     {
       character_id: 2,
       race_id: 2,
-      class_id: 13,
+      class_id: 3,
       background_id: 1,
       name: "Aurora Dawnflame",
       story: "Aurora Dawnflame nació en una pequeña aldea élfica enclavada en lo profundo de un bosque antiguo y misterioso. Desde temprana edad, demostró un talento innato para la magia, especialmente en el manejo del fuego, un poder que fluyó a través de su linaje familiar durante generaciones. Aurora fue entrenada por su abuelo, un poderoso mago del fuego que había dominado las artes arcanas durante siglos.",

@@ -91,6 +91,8 @@ const WeaponForm = ({ handleDisplay, characterId, handleWeapons, weapons, weapon
 
     if (response.ok) {
       const data = await response.json();
+      console.log(data);
+      
       setError(false);
       setIsLoading(false);
       handleWeapons([...weapons, data.data]);
@@ -116,8 +118,6 @@ const WeaponForm = ({ handleDisplay, characterId, handleWeapons, weapons, weapon
       ammunition,
     };
 
-    console.log(weapon);
-
     const response = await fetch("/api/characters/weapons/" + weaponId, {
       method: "PUT",
       headers: {
@@ -128,7 +128,6 @@ const WeaponForm = ({ handleDisplay, characterId, handleWeapons, weapons, weapon
 
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
       setError(false);
       setIsLoading(false);
       const newWeapons = [...weapons];

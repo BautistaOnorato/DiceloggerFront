@@ -14,7 +14,6 @@ export const addFriend = async (id: string) => {
       }
     })
     const data = await res.json()
-    console.log(data)
     revalidatePath('/friends')
   } catch (error) {
     console.error(error)
@@ -30,7 +29,6 @@ export const removeFriend = async (id: string) => {
       }
     })
     const data = await res.json()
-    console.log(data)
     revalidatePath('/friends')
   } catch (error) {
     console.error(error)

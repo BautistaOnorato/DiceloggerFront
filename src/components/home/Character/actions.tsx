@@ -151,14 +151,14 @@ export const editCharacter = async (
       }
     })
     .then((data) => {
+      revalidatePath(`/character/${id}`);
       revalidatePath(`/character/${id}/edit`);
       revalidatePath(`/characters`);
-      revalidatePath(`/character/${id}`);
-      // redirect(`/characters`);
+      // redirect(`/characters/${id}`);
     })
     .catch((err) => {
       throw new Error(err);
-    });
+    })
 };
 
 export const doubleUpCharacter = async (

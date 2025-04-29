@@ -111,10 +111,7 @@ const SpellsForm = ({
     }
 
     closeForm();
-    console.log(spellData);
   };
-
-  console.log(spellData);
 
   return (
     <div className={styles.createSpell}>

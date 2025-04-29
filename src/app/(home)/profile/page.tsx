@@ -38,7 +38,6 @@ const Profile = async () => {
   const updateImage = async (src: string) => {
     "use server"
     try {
-      console.log(src)
       const updatedInfo = { image: src };
       await updateUser(updatedInfo);
     } catch (error) {

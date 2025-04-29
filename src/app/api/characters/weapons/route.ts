@@ -79,12 +79,18 @@ export async function POST(req: Request, res: NextApiResponse) {
       campaign_id: null
     })
 
-    const weaponXCharacter = await createWeaponXCharacter(weapon.weapon_id, character_data_id)
+    const response = await createWeaponXCharacter(weapon.weapon_id, character_data_id)
+    console.log("==============================================");
+    console.log(weapon);
+    console.log("==============================================");
+    console.log(response);
+    console.log("==============================================");
+    
 
     return NextResponse.json(
       {
         message: "Weapon created successfully",
-        data: weaponXCharacter,
+        data: response,
       }
     );
   } catch (err: any) {
@@ -119,7 +125,10 @@ const createWeapon = async (weapon: Weapon) => {
 }
 
 const createWeaponXCharacter = async (weapon_id: number, character_data_id: number) => {
+  console.log(1);
+  
   try {
+    console.log(2);
     const response = await fetch(process.env.BACKEND_URL + "/weapon_character", {
       method: "POST",
       headers: {
@@ -133,11 +142,15 @@ const createWeaponXCharacter = async (weapon_id: number, character_data_id: numb
         equipped: false
       }),
     })
-
+    console.log(3);
+    
     if (response.ok) {
+      console.log(4);
       const data = await response.json();
+      console.log(data)
       return data;
     } else {
+      console.log(5);
       throw new Error("Request failed with status " + response.status);
     }
   } catch (error) {

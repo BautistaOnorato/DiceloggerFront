@@ -67,8 +67,6 @@ const ArmorForm = ({ handleDisplay, handleArmors, armors, armorId, characterId }
       dex_bonus: dexBonus,
     }
 
-    console.log(armor);
-
     const response = await fetch("/api/characters/armors", {
       method: "POST",
       headers: {
@@ -79,7 +77,6 @@ const ArmorForm = ({ handleDisplay, handleArmors, armors, armorId, characterId }
 
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
       setError(false);
       setIsLoading(false);
       handleArmors([...armors, data.data]);
@@ -105,8 +102,6 @@ const ArmorForm = ({ handleDisplay, handleArmors, armors, armorId, characterId }
       dex_bonus: dexBonus,
     }
 
-    console.log(armor);
-
     const response = await fetch("/api/characters/armors/" + armorId, {
       method: "PUT",
       headers: {
@@ -117,7 +112,6 @@ const ArmorForm = ({ handleDisplay, handleArmors, armors, armorId, characterId }
 
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
       setError(false);
       setIsLoading(false);
       const newArmors = [...armors];

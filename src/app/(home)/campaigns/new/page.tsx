@@ -8,7 +8,6 @@ import { redirect } from "next/navigation";
 
 const getCampaignTemplate = async (userId?: string, templateId?: string) => {
   if (!templateId || !userId) {
-    console.log(templateId, userId);
     return null;
   }
 
