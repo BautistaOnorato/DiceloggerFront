@@ -8,7 +8,7 @@ export async function GET(req: Request, res: NextApiResponse) {
   if (!session) {
     throw new Error("Token is missing");
   }
-
+  
   try {
     const res = await fetch(process.env.BACKEND_URL + "/user/checkSub", {
       headers: {

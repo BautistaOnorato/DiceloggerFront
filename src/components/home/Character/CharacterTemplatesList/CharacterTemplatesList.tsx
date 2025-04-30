@@ -64,7 +64,7 @@ const CharacterTemplatesList = async ({
             characterClass={selectedClassesAndIcons[index].selectedClass}
             template={true}
             pro={object.pro}
-            userSuscribed={false}
+            userSuscribed={userSuscribed}
           />
         );
       })}
